@@ -7,6 +7,42 @@ function fetchData() {
     .then(response => response.json())
     .then(pokedata => createPoke(pokedata.results));
 }
+function createPokeDetail(name){
+  const list = document.createElement('ul');
+  document.body.append(list);
+  const name = document.createElement('h2');
+  const form = document.querySelector("[data-js=form]");
+  form.addEventListener("submit", (event) =>{
+    event.preventDefault();
+    const apiUrlDetail = apiURL + ["id"];
+    console.log(event);
+
+
+  })
+
+}
+
+
+
+
+// function createPokeDetail(name, id, height, base_experience){
+//   const list = document.createElement('ul');
+//   document.body.append(list);
+//   const name = document.createElement('h2');
+//   const id = document.createElement('li');
+//   const height = document.createElement('li');
+//   const base_experience = document.createElement('li');
+//   const form = document.querySelector("[data-js=form]");
+//   form.addEventListener("submit", (event) =>{
+//     event.preventDefault();
+
+//   })
+
+// }
+
+
+
+
 fetchData();
 function createPoke(names) {
   const listElement = document.createElement('ul');
@@ -38,4 +74,4 @@ function createPoke(names) {
   });
 }
 
-// function createPokeDetail(name, )
+
