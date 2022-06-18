@@ -2,47 +2,49 @@ console.clear();
 
 const apiURL = 'https://pokeapi.co/api/v2/pokemon/';
 
-function fetchData() {
-  fetch(apiURL)
-    .then(response => response.json())
-    .then(pokedata => createPoke(pokedata.results));
-}
-function createPokeDetail(name){
-  const list = document.createElement('ul');
-  document.body.append(list);
-  const pokeName = document.createElement('h2');
-  const form = document.querySelector("[data-js=form]");
-  form.addEventListener("submit", (event) =>{
+function fetchPokeDetail() {
+  const form = document.querySelector('[data-js=form]');
+  form.addEventListener('submit', event => {
     event.preventDefault();
-    const apiUrlDetail = apiURL + ["id"];
-    console.log(event);
+    let apiUrlDetail = apiURL + form.id.value;
     console.log(apiUrlDetail);
-
-
-  })
-
+    fetch(apiUrlDetail)
+      .then(response => response.json())
+      .then(pokedata => fetchPokeDetail(pokedata.results));
+    const listElement = document.createElement('ul');
+    document.body.append(listElement);
+    const name = document.createElement('li');
+    name.innerText = `Name: ${name}`;
+    listElement.append(name);
+  });
+  form.reset();
 }
 
+fetchPokeDetail();
 
+// function createPeopleList(people) {
+//   const listElement = document.createElement('ul');
+//   listElement.className = 'tag-list'
+//   document.body.append(listElement);
 
+// const order = {
+//   flavor: form.flavor.value,
+//   balls: form.balls.valueAsNumber,
+//   container: form.container.value,
+//   extraCream: form["extra-cream"].checked,
+//   wishes: form.wishes.value,
+// };
 
 // function createPokeDetail(name, id, height, base_experience){
 //   const list = document.createElement('ul');
 //   document.body.append(list);
-//   const name = document.createElement('h2');
-//   const id = document.createElement('li');
-//   const height = document.createElement('li');
-//   const base_experience = document.createElement('li');
-//   const form = document.querySelector("[data-js=form]");
+//
 //   form.addEventListener("submit", (event) =>{
 //     event.preventDefault();
 
 //   })
 
 // }
-
-
-
 
 // fetchData();
 // function createPoke(names) {
@@ -56,22 +58,17 @@ function createPokeDetail(name){
 //     heading.innerText = name.name;
 //     item.append(heading);
 
-    // const colorList = document.createElement('ul');
-    // item.append(colorList);
+// const colorList = document.createElement('ul');
+// item.append(colorList);
 
-    // const hairColorItem = document.createElement('li');
-    // hairColorItem.innerText = `Hair: ${person.hair_color}`;
-    // colorList.append(hairColorItem);
+// const hairColorItem = document.createElement('li');
+// hairColorItem.innerText = `Hair: ${person.hair_color}`;
+// colorList.append(hairColorItem);
 
-    // const skinColorItem = document.createElement('li');
-    // skinColorItem.innerText = `Hair: ${person.skin_color}`;
-    // colorList.append(skinColorItem);
+// const skinColorItem = document.createElement('li');
+// skinColorItem.innerText = `Hair: ${person.skin_color}`;
+// colorList.append(skinColorItem);
 
-    // const eyeColorItem = document.createElement('li');
-    // eyeColorItem.innerText = `Hair: ${person.eye_color}`;
-    // colorList.append(eyeColorItem);
-    
-  
-
-
-
+// const eyeColorItem = document.createElement('li');
+// eyeColorItem.innerText = `Hair: ${person.eye_color}`;
+// colorList.append(eyeColorItem);
