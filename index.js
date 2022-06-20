@@ -10,12 +10,16 @@ function fetchPokeDetail() {
     console.log(apiUrlDetail);
     fetch(apiUrlDetail)
       .then(response => response.json())
-      .then(pokedata => fetchPokeDetail(pokedata.results));
-    const listElement = document.createElement('ul');
-    document.body.append(listElement);
-    const name = document.createElement('li');
-    name.innerText = `Name: ${name}`;
-    listElement.append(name);
+      .then(pokedata => {
+        const listElement = document.createElement('ul');
+        document.body.append(listElement);
+        const name = document.createElement('li');
+        name.innerText = `Name: ${pokedata.name}`;
+        listElement.append(name);
+        const height = document.createElement('li');
+        height.innerText = `Groesse: ${pokedata.height}`;
+        listElement.append(height);
+      });
   });
   form.reset();
 }
